@@ -1,41 +1,12 @@
-def make_map(n, arr):
-    binArr = []
-
-    for num in arr:
-        bin_nums = list(format(num, 'b'))
-        bin_len = len(bin_nums)
-
-        result = ''
-        if bin_len < n:
-            sub = n - bin_len
-
-            while sub != 0:
-                result += '0'
-                sub -= 1
-        
-        for bin_num in bin_nums:
-            result += bin_num
-        
-        binArr.append(result)
-    
-    return binArr
-
 def solution(n, arr1, arr2):
-    map1 = make_map(n, arr1)
-    map2 = make_map(n, arr2)
-
-    answer = []
-    for i in range(n):
-        map1_list = list(map1[i])
-        map2_list = list(map2[i])
-
-        map_result = ''
-        for j in range(n):
-            if map1_list[j] == '1' or map2_list[j] == '1':
-                map_result += '#'
-            else:
-                map_result += ' '
-
-        answer.append(map_result)
+    map1 = [format(arr, 'b') for arr in arr1]
+    map2 = [format(arr, 'b') for arr in arr2]
     
+    answer = []
+    for i in range(0, len(arr1)):
+        num1 = list(map1[i] if len(map1[i]) == n else ((n - len(map1[i])) * '0') + (map1[i]))
+        num2 = list(map2[i] if len(map2[i]) == n else ((n - len(map2[i])) * '0') + (map2[i]))
+        
+        answer.append(''.join('#' if num1[j] == '1' or num2[j] == '1' else ' ' for j in range(n)))
+        
     return answer
