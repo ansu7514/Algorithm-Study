@@ -15,11 +15,8 @@ def solution(fees, records):
         else:
             recordList[int(number)] = [time]
             
-    # 차량 번호가 작은 자동차순으로 정렬
-    
-
     answer = []
-    for car in list(sorted(recordList.keys())):
+    for car in list(sorted(recordList.keys())): # 차량 번호가 작은 자동차순으로 정렬
         record = recordList[car]
         
         # 길이가 홀수인 경우 마지막 입차 기록만 빼놓기
